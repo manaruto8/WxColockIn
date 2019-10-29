@@ -60,7 +60,7 @@ page {
   background-size: cover;
 }
 
-.userinfo-nickname::after {
+.userinfo-::after {
   border: none;
 }
 
