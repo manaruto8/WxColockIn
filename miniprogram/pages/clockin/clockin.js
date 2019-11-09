@@ -5,15 +5,22 @@ Page({
    * 页面的初始数据
    */
   data: {
-    add:"/images/add.svg"
+  },
 
+  getImg:function(){
+    var num=1
+    num=Math.round(Math.random()*16)+1
+    var url = "cloud://mawebservice.6d61-mawebservice-1259728751/image/" + num + ".jpg"
+    this.setData({
+      imageUrl: url
+    }) 
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+  
   },
 
   /**
@@ -27,7 +34,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    this.getImg()
   },
 
   /**

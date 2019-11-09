@@ -1,8 +1,18 @@
 /* miniprogram/pages/clockin.wxss */
-.clockin_btn{
+.clockin_back{
   width: 100%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  /* justify-content:center; */
+  height: auto;  
+}
+.clockin_imgback{
+  width: 100%;
+  height: auto;  
+  position: relative;
+}
+.clockin_img{
+   width: 100%
+}
+.clockin_inputback{
+   width: 100%;
+   position: absolute;
+   bottom: 0rpx;
 }

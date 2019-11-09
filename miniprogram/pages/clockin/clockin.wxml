@@ -1,4 +1,10 @@
 <!--miniprogram/pages/clockin.wxml-->
-<view class="clockin_btn" >
- dadeawd
+<view class=" clockin_back ">
+  <view class=" clockin_imgback " >
+    <image class="clockin_img" src="{{imageUrl}}" mode="widthFix"></image>
+    <view class="clockin_inputback ">
+    <input></input>
+  </view>
+  </view>
+  
 </view>
