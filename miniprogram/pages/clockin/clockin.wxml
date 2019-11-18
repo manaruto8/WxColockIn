@@ -1,10 +1,19 @@
 <!--miniprogram/pages/clockin.wxml-->
-<view class=" clockin_back ">
-  <view class=" clockin_imgback " >
+<view class="clockin_back">
+  <view class="clockin_imgback" >
     <image class="clockin_img" src="{{imageUrl}}" mode="widthFix"></image>
-    <view class="clockin_inputback ">
-    <input></input>
+    <view class="clockin_inputback">
+      <input class="clockin_input" placeholder="请输入你想说的话"  placeholder-style="color:#b2b2b2"></input>
+    </view>
+    <view class="clockin_locationback">
+      <text class="clockin_location" >未获取到位置</text>
+    </view>
   </view>
+  <view class="gridview">
+    <block wx:for="{{griddata}}" wx:key="key">
+      <view class='gridview-item'>
+        <image class="clockin_img" src="{{item}}" mode="widthFix"></image>
+      </view>
+    </block>
   </view>
-  
 </view>

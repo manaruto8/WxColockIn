@@ -12,7 +12,33 @@
    width: 100%
 }
 .clockin_inputback{
+   width: 40%;
+   position: absolute;
+   left: 20rpx;
+   bottom: 80rpx;
+}
+.clockin_input{
+   color: white;
+   font-size: 13pt;
+   border-bottom:1rpx solid white;
+}
+.clockin_locationback{
    width: 100%;
    position: absolute;
-   bottom: 0rpx;
+   left: 20rpx;
+   bottom: 20rpx;
+}
+.clockin_location{
+  color: white;
+  font-size: 11pt;
+}
+.gridview{
+    margin: 10rpx;
+    height: auto;  
+    position: relative;
+}
+.gridview-item{
+    margin: 1%;
+    width: 48%;
+    float: left;
 }

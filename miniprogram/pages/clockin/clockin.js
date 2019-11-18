@@ -8,11 +8,18 @@ Page({
   },
 
   getImg:function(){
-    var num=1
-    num=Math.round(Math.random()*16)+1
-    var url = "cloud://mawebservice.6d61-mawebservice-1259728751/image/" + num + ".jpg"
+    var arr=[1,2,3,4,5]
+    for(var i=0;i<arr.length;i++){
+      var num = Math.round(Math.random() * 16) + 1
+      if (arr.indexOf(num)!=-1|| num < 1 || num > 17){
+        i--
+        continue
+      }
+      var url= "cloud://mawebservice.6d61-mawebservice-1259728751/image/" + num + ".jpg"
+      arr.splice(i,1,url)
+    }
     this.setData({
-      imageUrl: url
+      griddata: arr
     }) 
   },
 
@@ -27,14 +34,14 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-
+    this.getImg()
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    this.getImg()
+  
   },
 
   /**
