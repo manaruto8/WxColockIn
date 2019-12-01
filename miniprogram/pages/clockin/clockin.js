@@ -7,14 +7,34 @@ Page({
   data: {
   },
 
+  getBing: function () {
+    var that=this
+    var url = "cloud://mawebservice.6d61-mawebservice-1259728751/image/1.jpg"
+    wx.request({
+      url: "http://guolin.tech/api/bing_pic",
+      success(res){
+        url=res.data
+        that.setData({
+          imageUrl:url
+        }) 
+      }
+    })
+  },
+
   getImg:function(){
     var arr=[1,2,3,4,5]
+    var urlArr = ["cloud://mawebservice.6d61-mawebservice-1259728751/image/1.jpg",
+                  "cloud://mawebservice.6d61-mawebservice-1259728751/image/2.jpg",
+                  "cloud://mawebservice.6d61-mawebservice-1259728751/image/3.jpg",
+                  "cloud://mawebservice.6d61-mawebservice-1259728751/image/4.jpg",
+                  "cloud://mawebservice.6d61-mawebservice-1259728751/image/5.jpg"]
     for(var i=0;i<arr.length;i++){
       var num = Math.round(Math.random() * 16) + 1
       if (arr.indexOf(num)!=-1|| num < 1 || num > 17){
         i--
         continue
       }
+      arr.splice(i, 1, num)
       var url= "cloud://mawebservice.6d61-mawebservice-1259728751/image/" + num + ".jpg"
       arr.splice(i,1,url)
     }
@@ -34,14 +54,15 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-    this.getImg()
+    
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-  
+    this.getImg()
+    this.getBing()
   },
 
   /**
