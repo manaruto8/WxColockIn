@@ -23,7 +23,7 @@
    border-bottom:1rpx solid white;
 }
 .clockin_locationback{
-   width: 100%;
+   width: 50%;
    position: absolute;
    left: 20rpx;
    bottom: 20rpx;
@@ -31,6 +31,7 @@
 .clockin_location{
   color: white;
   font-size: 11pt;
+  border-bottom:1rpx solid white;
 }
 .gridview{
     margin: 10rpx;
