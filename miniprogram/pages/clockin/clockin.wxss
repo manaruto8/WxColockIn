@@ -12,9 +12,9 @@
    width: 100%
 }
 .clockin_inputback{
-   width: 40%;
    position: absolute;
    left: 20rpx;
+   right: 20rpx;
    bottom: 80rpx;
 }
 .clockin_input{
@@ -41,4 +41,24 @@
     margin: 1%;
     width: 48%;
     float: left;
+}
+.clockin_floatback{
+    position: fixed;
+    width: 30%;
+    height: 70rpx;
+    bottom: 50rpx;
+    left: 0;
+    right: 0;
+    margin:0 auto;
+    background-color: white;
+    border-radius: 20rpx
+    
+}
+.clockin_floatbtn{
+    height: 70rpx;
+    display: flex;
+    font-size:11pt;
+    justify-content: center;
+    align-items: center;
+
 }

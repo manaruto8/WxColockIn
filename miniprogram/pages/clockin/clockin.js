@@ -36,11 +36,27 @@ Page({
       }
       arr.splice(i, 1, num)
       var url= "cloud://mawebservice.6d61-mawebservice-1259728751/image/" + num + ".jpg"
-      arr.splice(i,1,url)
+      urlArr.splice(i,1,url)
     }
     this.setData({
-      griddata: arr
+      griddata: urlArr
     }) 
+  },
+
+  getLocation: function () {
+    wx.getLocation({
+      type: 'wgs84',
+      success: function (res) {
+        // console.log(res);
+        var latitude = res.latitude
+        var longitude = res.longitude
+        //弹框
+        wx.showModal({
+          title: '当前位置',
+          content: "纬度:" + latitude + ",经度:" + longitude,
+        })
+      }
+    })
   },
 
   /**
@@ -54,7 +70,7 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-    
+    this.getLocation()
   },
 
   /**

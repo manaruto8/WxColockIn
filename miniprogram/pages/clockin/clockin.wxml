@@ -6,7 +6,7 @@
       <input class="clockin_input" placeholder="请输入你想说的话"  placeholder-style="color:#b2b2b2"></input>
     </view>
     <view class="clockin_locationback">
-      <text class="clockin_location" >未获取到位置</text>
+      <text class="clockin_location" >未获取到位置!</text>
     </view>
   </view>
   <view class="gridview">
@@ -15,5 +15,8 @@
         <image class="clockin_img" src="{{item}}" mode="widthFix"></image>
       </view>
     </block>
+  </view>
+  <view class="clockin_floatback">
+    <text class="clockin_floatbtn">分享打卡</text>
   </view>
 </view>
