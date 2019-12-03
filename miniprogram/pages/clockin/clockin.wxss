@@ -39,9 +39,12 @@
     position: relative;
 }
 .gridview-item{
-    margin: 1%;
+    margin:1%;
     width: 48%;
     float: left;
+}
+.gridview_imgitem{
+    width: 100%;
 }
 .clockin_floatback{
     position: fixed;
