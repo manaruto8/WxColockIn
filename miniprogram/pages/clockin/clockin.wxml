@@ -3,10 +3,10 @@
   <view class="clockin_imgback" >
     <image class="clockin_img" src="{{backUrl}}" mode="widthFix"></image>
     <view class="clockin_inputback">
-      <input class="clockin_input" placeholder="请输入你想说的话"  placeholder-style="color:#b2b2b2"></input>
+      <input class="clockin_input" placeholder="请输入你想说的话"  placeholder-style="color:#b2b2b2" bindinput="textInput"></input>
     </view>
     <view class="clockin_locationback">
-      <input class="clockin_location" placeholder="请输入你的位置"  placeholder-style="color:#b2b2b2"></input>
+      <input class="clockin_location" placeholder="请输入你的位置"  placeholder-style="color:#b2b2b2" bindinput="locationInput"></input>
     </view>
   </view>
   <view class="gridview">
@@ -17,6 +17,7 @@
     </block>
   </view>
   <view class="clockin_floatback">
-    <button class="clockin_floatbtn" open-type="share">点击分享</button>
+    <button class="clockin_floatbtn" open-type="share" data-shareInfo="{{shareModel}}">点击分享</button>
   </view>
+  <canvas class='canvas' style="width: {{imageWidth}}px; height: {{imageHeight}}px; left:10000rpx; display: flexd;" canvas-id="myCanvas"></canvas>
 </view>

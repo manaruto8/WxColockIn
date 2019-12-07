@@ -15,13 +15,15 @@ Page({
       success(res){
         url=res.data
         that.setData({
-          backUrl:url
+          backUrl: "cloud://mawebservice.6d61-mawebservice-1259728751/image/1.jpg"
         }) 
+        that.getTempImg()
       }
     })
   },
 
   getImg:function(){
+    var that = this
     var arr=[1,2,3,4,5]
     var urlArr = ["cloud://mawebservice.6d61-mawebservice-1259728751/image/1.jpg",
                   "cloud://mawebservice.6d61-mawebservice-1259728751/image/2.jpg",
@@ -41,6 +43,22 @@ Page({
     this.setData({
       griddata: urlArr
     }) 
+  },
+
+  getTempImg: function () {
+    var that = this
+    wx.cloud.getTempFileURL({
+      fileList: [that.data.backUrl],
+      success: res => {
+        that.setData({
+          tempUrl: res.fileList[0].tempFileURL
+        })
+        that.getCanvas()
+      },
+      fail: err => {
+        // handle error
+      }
+    })
   },
 
   getLocation: function () {
@@ -64,7 +82,69 @@ Page({
     var url = options.currentTarget.dataset.url
     this.setData({
       backUrl: url
-    }) 
+    })
+    this.getTempImg()
+  },  
+
+  getCanvas: function () {
+    var canvasId ="myCanvas"
+    var ctx = wx.createCanvasContext(canvasId)
+    var text = this.data.textInput
+    var lacation=this.data.locationInput
+    var that = this
+    wx.getImageInfo({
+      src: that.data.tempUrl,
+      success: function (res) {
+        var width = res.width
+        var height = res.height
+        //获取屏幕宽度
+        let screenWidth = wx.getSystemInfoSync().windowWidth
+        //处理一下图片的宽高的比例
+        if (width >= height) {
+          if (width > screenWidth) {
+            width = screenWidth
+          }
+          height = height / res.width * width
+        } else {
+          if (width > screenWidth) {
+            width = screenWidth
+          }
+          if (height > 400) {
+            height = 400
+            width = res.width / res.height * height
+          } else {
+            height = height / res.width * width
+          }
+        }
+        that.setData({
+          imageWidth: width,
+          imageHeight: height,
+        })
+        ctx.drawImage(that.data.tempUrl, 0, 0, width, height)
+        ctx.setFontSize(20)
+        ctx.setFillStyle("white")
+        ctx.fillText("I Love You", 150, 150)
+        ctx.draw(false,function(){
+          wx.canvasToTempFilePath({
+            canvasId: canvasId,
+            success: (res) => {
+              wx.saveFile({
+                tempFilePath: res.tempFilePath,
+                success: (res) => {
+                  that.setData({
+                    tempPath: res.savedFilePath
+                  }) 
+                }
+              })
+            
+            },
+            fail: (e) => {
+            }
+          })
+        })
+      }
+    })
+    
   },  
   /**
    * 生命周期函数--监听页面加载
@@ -78,14 +158,16 @@ Page({
    */
   onReady: function () {
     //this.getLocation()
+    this.getImg()
+    this.getBing()
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    this.getImg()
-    this.getBing()
+   
+   
   },
 
   /**
@@ -106,6 +188,7 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
+    
 
   },
 
@@ -120,6 +203,23 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
-    
-  }
+    var that = this
+    console.log("---" + that.data.tempPath)
+    return {
+      title:"打卡",
+      imageUrl: that.data.tempPath
+    }
+  },
+
+  textInput: function(e) {
+    this.setData({
+      textInput: e.detail.value
+    })
+  },
+
+  locationInput:function(e) {
+    this.setData({
+      locationInput: e.detail.value
+    })
+  },
 })
