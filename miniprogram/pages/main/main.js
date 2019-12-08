@@ -1,4 +1,4 @@
-// miniprogram/pages/clockin.js
+// miniprogram/pages/main.js
 Page({
 
   /**
@@ -128,12 +128,17 @@ Page({
           wx.canvasToTempFilePath({
             canvasId: canvasId,
             success: (res) => {
+              console.log("---1" + res.tempFilePath)
               wx.saveFile({
                 tempFilePath: res.tempFilePath,
                 success: (res) => {
+                  console.log("---2" + res.savedFilePath)
                   that.setData({
                     tempPath: res.savedFilePath
                   }) 
+                },
+                fail: (e) => {
+                  console.log("---2" + e.content)
                 }
               })
             

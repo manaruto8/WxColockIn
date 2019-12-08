@@ -1,4 +1,4 @@
-<!--miniprogram/pages/clockin.wxml-->
+<!--miniprogram/pages/mian.wxml-->
 <view class="clockin_back">
   <view class="clockin_imgback" >
     <image class="clockin_img" src="{{backUrl}}" mode="widthFix"></image>
@@ -11,8 +11,8 @@
   </view>
   <view class="gridview">
     <block wx:for="{{griddata}}" wx:key="key">
-      <view class='gridview-item' >
-        <image class="gridview_imgitem" mode="widthFix" src="{{item}}" bindtap="itemClick" data-url="{{item}}"></image>
+      <view class='gridview_item' bindtap="itemClick" data-url="{{item}}">
+        <image class="gridview_item_img" mode="widthFix" src="{{item}}" ></image>
       </view>
     </block>
   </view>

@@ -1,4 +1,4 @@
-/* miniprogram/pages/clockin.wxss */
+/* miniprogram/pages/mian.wxss */
 .clockin_back{
   width: 100%;
   height: auto;  
@@ -38,12 +38,12 @@
     height: auto;  
     position: relative;
 }
-.gridview-item{
+.gridview_item{
     margin:1%;
     width: 48%;
     float: left;
 }
-.gridview_imgitem{
+.gridview_item_img{
     width: 100%;
 }
 .clockin_floatback{

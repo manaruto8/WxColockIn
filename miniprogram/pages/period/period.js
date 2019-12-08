@@ -1,30 +1,12 @@
-// miniprogram/pages/mine/mine.js
+// miniprogram/pages/period.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    listdata:[
-      {
-        text:"经期管理"
-      },
-      {
-        
-      }
-    ]
 
   },
-
-
-  itemClick: function (options) {
-    var text = options.currentTarget.dataset.text
-    if(text=="经期管理"){
-      wx.navigateTo({
-        url: '../period/period',
-      })
-    }
-  },  
 
   /**
    * 生命周期函数--监听页面加载

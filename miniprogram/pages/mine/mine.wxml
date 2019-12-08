@@ -1,2 +1,14 @@
 <!--miniprogram/pages/mine/mine.wxml-->
-<text>miniprogram/pages/mine/mine.wxml</text>
+<view class="mine_back">
+  <block wx:for="{{listdata}}" wx:key="key">
+      <view class="listview_item" bindtap="itemClick" data-text="{{item.text}}">
+        <view class="listview_item_textback">
+          <text class="listview_item_text">{{item.text}}</text>
+        </view>
+        <view class="listview_item_imgback">
+          <image></image>
+        </view>
+      </view>
+    </block>
+</view>
+

@@ -1,1 +1,24 @@
 /* miniprogram/pages/mine/mine.wxss */
+.main_back{
+  width: 100%;
+  height: auto;  
+}
+.listview_item{
+    margin-top: 20rpx;
+    height: 100rpx;
+    display: flex;
+    background-color: white;
+}
+.listview_item_textback{
+    padding-left: 20rpx;
+    width: 50%;
+    display: flex;
+}
+.listview_item_text{
+  margin-top: auto;
+  margin-bottom: auto;
+  font-size: 11pt
+}
+.listview_item_imgback{
+    width: 50%;
+}

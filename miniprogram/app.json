@@ -1,12 +1,13 @@
 {
   "pages": [
-    "pages/clockin/clockin",
-    "pages/mine/mine"
+    "pages/main/main",
+    "pages/mine/mine",
+    "pages/period/period"
   ],
   "tabBar": {
     "list": [
       {
-        "pagePath": "pages/clockin/clockin",
+        "pagePath": "pages/main/main",
         "text": "打卡"
       },
       {
