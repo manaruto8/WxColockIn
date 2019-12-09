@@ -2,7 +2,8 @@
   "pages": [
     "pages/main/main",
     "pages/mine/mine",
-    "pages/period/period"
+    "pages/period/period",
+    "pages/menses/menses"
   ],
   "tabBar": {
     "list": [
@@ -23,5 +24,12 @@
     "navigationBarTitleText": "轻简打卡",
     "navigationBarTextStyle": "black"
   },
-  "sitemapLocation": "sitemap.json"
+  "sitemapLocation": "sitemap.json",
+
+  "plugins": {
+    "calendar": {
+      "version": "1.1.3",
+      "provider": "wx92c68dae5a8bb046"
+    }
+  }
 }

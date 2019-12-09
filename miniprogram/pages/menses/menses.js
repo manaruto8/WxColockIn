@@ -1,35 +1,42 @@
-// miniprogram/pages/mine/mine.js
+// miniprogram/pages/menses/menses.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    listdata:[
-      {
-        text:"日历管理1"
-      },
-      {
-        text: "日历管理2"
-      }
+    dayStyle: [
+      { month: "current", day: new Date().getDate(), color: "white", background: "#AAD4F5" }, 
+      { month: "current", day: new Date().getDate(), color: "white", background: "#AAD4F5" },
     ]
 
   },
 
 
-  itemClick: function (options) {
-    var text = options.currentTarget.dataset.text
-    if (text =="日历管理1"){
-      wx.navigateTo({
-        url: '../period/period',
-      })
-    }
-    if (text == "日历管理2") {
-      wx.navigateTo({
-        url: '../menses/menses',
-      })
-    }
-  },  
+  next: function (event) {
+    console.log(event.detail);
+  },
+
+  prev: function (event) {
+    console.log(event.detail);
+  },
+
+  dateChange: function (event) {
+    console.log(event.detail);
+  },
+
+  dayClick: function (event) {
+    console.log(event.detail);
+    var day = "dayStyle[1].day"
+    var color = "dayStyle[1].color"
+    var background =" dayStyle[1].background"
+    var dayClick = event.detail.day
+    this.setData({
+      [day]: dayClick,
+      [background]:"#84e7d0"
+    })
+
+  },
 
   /**
    * 生命周期函数--监听页面加载

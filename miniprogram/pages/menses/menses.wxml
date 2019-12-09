@@ -1,0 +1,43 @@
+<!--miniprogram/pages/menses/menses.wxml-->
+<scroll-view scroll-y="true" class="srollview">
+  <calendar 
+    calendar-style="calendar" 
+    header-style="header" 
+    board-style="board"
+    weeks-type="cn"
+    active-type="rounded"
+    lunar="true"
+    bindnextMonth="next"
+    bindprevMonth="prev"
+    binddateChange="dateChange"
+    binddayClick="dayClick"
+    days-color="{{dayStyle}}"
+  />
+  <view class="menses_startback">
+    <view class="menses_start_textback">
+      <text class="menses_start_text">iscome</text>
+    </view>
+    <view class="menses_start_switchback">
+      <switch class="menses_start_switch"></switch>
+    </view>
+  </view>
+
+  <view class="menses_startback">
+    <view class="menses_start_textback">
+      <text class="menses_start_text"></text>
+    </view>
+    <view class="menses_start_switchback">
+      <switch class="menses_start_switch"></switch>
+    </view>
+  </view>
+
+  <view class="menses_startback">
+    <view class="menses_start_textback">
+      <text class="menses_start_text"></text>
+    </view>
+    <view class="menses_start_switchback">
+      <switch class="menses_start_switch"></switch>
+    </view>
+  </view>
+  
+</scroll-view>

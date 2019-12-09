@@ -1,0 +1,37 @@
+/* miniprogram/pages/menses/menses.wxss */
+.calendar {
+    background-color: white;
+    padding-top: 10px;
+}
+.header {
+    font-size: large; /*修改了标题文字和按钮的大小*/
+    color: black;   /*修改了标题文字和按钮的颜色*/
+}
+.board {
+    background-color: white;
+    color: white;
+}
+.menses_startback{
+    margin-top: 20rpx;
+    height: 100rpx;
+    display: flex;
+    background-color: white;
+}
+.menses_start_textback{
+    padding-left: 20rpx;
+    width: 50%;
+    display: flex;
+}
+.menses_start_text{
+    margin-top: auto;
+    margin-bottom: auto;
+    font-size: 11pt
+}
+.menses_start_switchback{
+    padding-right: 20rpx;
+    width: 50%;
+    display: flex;
+}
+.menses_start_switch{
+    height: 60rpx
+}
