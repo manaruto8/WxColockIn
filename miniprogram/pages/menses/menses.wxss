@@ -1,37 +1,57 @@
 /* miniprogram/pages/menses/menses.wxss */
 .calendar {
-    background-color: white;
+    background-color: #839dd8;
     padding-top: 10px;
 }
 .header {
     font-size: large; /*修改了标题文字和按钮的大小*/
-    color: black;   /*修改了标题文字和按钮的颜色*/
+    color: white;   /*修改了标题文字和按钮的颜色*/
 }
 .board {
-    background-color: white;
-    color: white;
+    background-color:  #839dd8;
+    color: #512da8;
 }
-.menses_startback{
+.menses_itemback{
     margin-top: 20rpx;
     height: 100rpx;
     display: flex;
     background-color: white;
 }
-.menses_start_textback{
+.menses_item_textback{
     padding-left: 20rpx;
-    width: 50%;
+    width: 40%;
     display: flex;
 }
-.menses_start_text{
+.menses_item_text{
     margin-top: auto;
     margin-bottom: auto;
     font-size: 11pt
 }
-.menses_start_switchback{
+.menses_item_switchback{
     padding-right: 20rpx;
-    width: 50%;
+    width: 60%;
+    display: flex;
+    position: relative;
+}
+.menses_item_switch{
+    height: 30rpx;
+    margin: 10rpx;
+    right: 0rpx;
+    position: absolute;
+
+}
+.menses_item_imgback{
+    padding-left: 20rpx;
+    width: 60%;
     display: flex;
 }
-.menses_start_switch{
-    height: 60rpx
+.menses_item_picker{
+    width: 80%;
+    margin-top: auto;
+    margin-bottom: auto;
+    font-size: 11pt;
+    text-align: right;
+}
+.menses_item_img{
+    width: 20%;
 }

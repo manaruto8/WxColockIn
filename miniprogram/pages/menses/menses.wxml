@@ -13,30 +13,52 @@
     binddayClick="dayClick"
     days-color="{{dayStyle}}"
   />
-  <view class="menses_startback">
-    <view class="menses_start_textback">
-      <text class="menses_start_text">iscome</text>
+  <view class="menses_itemback">
+    <view class="menses_item_textback">
+      <text class="menses_item_text">开始</text>
     </view>
-    <view class="menses_start_switchback">
-      <switch class="menses_start_switch"></switch>
+    <view class="menses_item_switchback">
+      <switch class="menses_item_switch" color="#AAD4F5"></switch>
+    </view>
+  </view>
+  <view class="menses_itemback">
+    <view class="menses_item_textback">
+      <text class="menses_item_text">智能</text>
+    </view>
+    <view class="menses_item_switchback">
+      <switch class="menses_item_switch" color="#AAD4F5"></switch>
     </view>
   </view>
 
-  <view class="menses_startback">
-    <view class="menses_start_textback">
-      <text class="menses_start_text"></text>
+  <view class="menses_itemback">
+    <view class="menses_item_textback">
+      <text class="menses_item_text">时长</text>
     </view>
-    <view class="menses_start_switchback">
-      <switch class="menses_start_switch"></switch>
+    <view class="menses_item_imgback">
+      <view class="menses_item_picker">
+      <picker bindchange="bindMensesPicker" value="{{mensesIndex}}" range="{{mensesArray}}">
+        <view >
+          {{mensesArray[mensesIndex]}} 天
+        </view>
+      </picker>
+      </view>
+      <image class="menses_item_img"></image>
     </view>
   </view>
 
-  <view class="menses_startback">
-    <view class="menses_start_textback">
-      <text class="menses_start_text"></text>
+  <view class="menses_itemback">
+    <view class="menses_item_textback">
+      <text class="menses_item_text">周期</text>
     </view>
-    <view class="menses_start_switchback">
-      <switch class="menses_start_switch"></switch>
+    <view class="menses_item_imgback">
+    <view class="menses_item_picker">
+      <picker bindchange="bindCyclePicker" value="{{cycleIndex}}" range="{{cycleArray}}">
+        <view >
+          {{cycleArray[cycleIndex]}} 天
+        </view>
+      </picker>
+      </view>
+      <image class="menses_item_img"></image>
     </view>
   </view>
   

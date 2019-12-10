@@ -8,8 +8,9 @@ Page({
     dayStyle: [
       { month: "current", day: new Date().getDate(), color: "white", background: "#AAD4F5" }, 
       { month: "current", day: new Date().getDate(), color: "white", background: "#AAD4F5" },
-    ]
-
+    ],
+    mensesIndex: 7,
+    cycleIndex: 28
   },
 
 
@@ -29,13 +30,44 @@ Page({
     console.log(event.detail);
     var day = "dayStyle[1].day"
     var color = "dayStyle[1].color"
-    var background =" dayStyle[1].background"
+    var background ="dayStyle[1].background"
     var dayClick = event.detail.day
     this.setData({
-      [day]: dayClick,
+      [day]: event.detail.day,
       [background]:"#84e7d0"
     })
 
+  },
+
+  bindMensesPicker: function (e) {
+    console.log('picker发送选择改变，携带值为', e.detail.value)
+    this.setData({
+      mensesIndex: e.detail.value
+    })
+  },
+
+  bindCyclePicker: function (e) {
+    console.log('picker发送选择改变，携带值为', e.detail.value)
+    this.setData({
+      cycleIndex: e.detail.value
+    })
+  },
+
+  setPicker:function(){
+    var mensesLenth=15
+    var cycleLenth = 100
+    var mensesArr = new Array(mensesLenth);
+    var cycleArr = new Array(cycleLenth);
+    for (var i = 0; i <= cycleLenth; i++) {
+      if(i<=15){
+        mensesArr[i]=String(i)
+      }
+      cycleArr[i] = String(i)
+    }
+    this.setData({
+      mensesArray: mensesArr,
+      cycleArray: cycleArr
+    })
   },
 
   /**
@@ -49,7 +81,7 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-
+    this.setPicker()
   },
 
   /**
