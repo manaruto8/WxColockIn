@@ -1,7 +1,8 @@
 {
   "pages": [
-    "pages/main/main",
     "pages/mine/mine",
+    "pages/main/main",
+    
     "pages/period/period",
     "pages/menses/menses"
   ],

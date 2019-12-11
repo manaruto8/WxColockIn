@@ -1,1 +1,45 @@
 /* miniprogram/pages/period.wxss */
+.menses_itemback{
+    margin-top: 20rpx;
+    height: 100rpx;
+    display: flex;
+    background-color: white;
+}
+.menses_item_textback{
+    padding-left: 20rpx;
+    width: 40%;
+    display: flex;
+}
+.menses_item_text{
+    margin-top: auto;
+    margin-bottom: auto;
+    font-size: 11pt
+}
+.menses_item_switchback{
+    padding-right: 20rpx;
+    width: 60%;
+    display: flex;
+    position: relative;
+}
+.menses_item_switch{
+    height: 30rpx;
+    margin: 10rpx;
+    right: 0rpx;
+    position: absolute;
+
+}
+.menses_item_imgback{
+    padding-left: 20rpx;
+    width: 60%;
+    display: flex;
+}
+.menses_item_picker{
+    width: 80%;
+    margin-top: auto;
+    margin-bottom: auto;
+    font-size: 11pt;
+    text-align: right;
+}
+.menses_item_img{
+    width: 20%;
+}

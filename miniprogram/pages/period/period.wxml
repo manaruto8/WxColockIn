@@ -1,5 +1,5 @@
 <!--miniprogram/pages/period.wxml-->
-<view>
+<scroll-view scroll-y="true" class="srollview">
   <calendar
   calendarConfig="{{calendarConfig}}"
   bind:onTapDay="onTapDay"
@@ -9,4 +9,54 @@
   bind:whenChangeMonth="whenChangeMonth"
   bind:afterCalendarRender="afterCalendarRender"
 ></calendar>
-</view>
+  <view class="menses_itemback">
+    <view class="menses_item_textback">
+      <text class="menses_item_text">开始</text>
+    </view>
+    <view class="menses_item_switchback">
+      <switch class="menses_item_switch" color="#AAD4F5" bindchange="bindStartSwitch"></switch>
+    </view>
+  </view>
+  <view class="menses_itemback">
+    <view class="menses_item_textback">
+      <text class="menses_item_text">智能</text>
+    </view>
+    <view class="menses_item_switchback">
+      <switch class="menses_item_switch" color="#AAD4F5" bindchange="bindSmartSwitch"></switch>
+    </view>
+  </view>
+
+  <view class="menses_itemback">
+    <view class="menses_item_textback">
+      <text class="menses_item_text">时长</text>
+    </view>
+    <view class="menses_item_imgback">
+      <view class="menses_item_picker">
+      <picker bindchange="bindMensesPicker" value="{{mensesIndex}}" range="{{mensesArray}}">
+        <view >
+          {{mensesArray[mensesIndex]}} 天
+        </view>
+      </picker>
+      </view>
+      <image class="menses_item_img"></image>
+    </view>
+  </view>
+
+  <view class="menses_itemback">
+    <view class="menses_item_textback">
+      <text class="menses_item_text">周期</text>
+    </view>
+    <view class="menses_item_imgback">
+    <view class="menses_item_picker">
+      <picker bindchange="bindCyclePicker" value="{{cycleIndex}}" range="{{cycleArray}}">
+        <view >
+          {{cycleArray[cycleIndex]}} 天
+        </view>
+      </picker>
+      </view>
+      <image class="menses_item_img"></image>
+    </view>
+  </view>
+  
+</scroll-view>
+

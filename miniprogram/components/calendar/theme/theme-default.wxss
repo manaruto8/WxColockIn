@@ -5,21 +5,21 @@
 .default_weekend-color,
 .default_handle-color,
 .default_week-color {
-    color: #ff629a;
+    color: #5c5bc0;
 }
 
 .default_today {
     color: #fff;
-    background-color: #874fb4;
+    background-color: #26a69a;
 }
 
 .default_choosed {
     color: #fff;
-    background-color: #ff629a;
+    background-color: #5c6bc0;
 }
 
 .default_date-disable {
-    color: #c7c7c7;
+    color: #90a4ae;
 }
 
 .default_prev-month-date,
@@ -40,7 +40,7 @@
 }
 
 .default_date-desc {
-    color: #c2c2c2;
+    color: #90acae;
 }
 
 .default_date-desc-lunar {
@@ -48,5 +48,5 @@
 }
 
 .default_date-desc-disable {
-    color: #e2e2e2;
+    color: #90acae;
 }

@@ -1,6 +1,6 @@
 /* miniprogram/pages/menses/menses.wxss */
 .calendar {
-    background-color: #839dd8;
+    background-color: #6200ea;
     padding-top: 10px;
 }
 .header {
@@ -8,8 +8,8 @@
     color: white;   /*修改了标题文字和按钮的颜色*/
 }
 .board {
-    background-color:  #839dd8;
-    color: #512da8;
+    background-color:  #ede7f6;
+    color: #8388ff;
 }
 .menses_itemback{
     margin-top: 20rpx;
