@@ -1,4 +1,6 @@
 // miniprogram/pages/mine/mine.js
+
+var app=getApp()
 Page({
 
   /**
@@ -11,6 +13,9 @@ Page({
       },
       {
         text: "日历管理2"
+      },
+      {
+        text: "日历记录"
       }
     ]
 
@@ -29,7 +34,27 @@ Page({
         url: '../menses/menses',
       })
     }
+    if (text == "日历记录") {
+      wx.navigateTo({
+        url: '../record/record',
+      })
+    }
   },  
+
+  getOpenId(e){
+    wx.cloud.callFunction({
+      // 云函数名称
+      name: 'login',
+      // 传给云函数的参数
+      data: {
+      },
+      success: function (res) {
+        console.log(res.result.openid) // 3
+        app.globalData.userId = res.result.openid
+      },
+      fail: console.error
+    })
+  },
 
   /**
    * 生命周期函数--监听页面加载
@@ -42,7 +67,7 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-
+    this.getOpenId()
   },
 
   /**

@@ -1,0 +1,51 @@
+/* miniprogram/components/calendar/record/record.wxss */
+.record_itemback{
+    margin-top: 20rpx;
+    height: 100rpx;
+    display: flex;
+    background-color: white;
+}
+.record_item_textback{
+    padding-left: 20rpx;
+    width: 40%;
+    display: flex;
+}
+.record_item_text{
+    margin-top: auto;
+    margin-bottom: auto;
+    font-size: 11pt
+}
+.record_item_imgback{
+    padding-left: 20rpx;
+    width: 60%;
+    display: flex;
+}
+.record_item_picker{
+    width: 80%;
+    margin-top: auto;
+    margin-bottom: auto;
+    font-size: 11pt;
+    text-align: right;
+}
+.record_item_img{
+    width: 20%;
+}
+.listview_item{
+    margin-top: 20rpx;
+    height: 100rpx;
+    display: flex;
+    background-color: white;
+}
+.listview_item_textback{
+    padding-left: 20rpx;
+    width: 50%;
+    display: flex;
+}
+.listview_item_text{
+  margin-top: auto;
+  margin-bottom: auto;
+  font-size: 11pt
+}
+.listview_item_imgback{
+    width: 50%;
+}

@@ -28,6 +28,7 @@ Page({
     },
     mensesIndex: 7,
     cycleIndex: 28,
+    startSwitch:false,
   },
 
   /**
@@ -46,6 +47,9 @@ Page({
     var time=dates.length-selectDate.day
     if (!this.data.startSwitch) return;
     if(time>this.data.mensesIndex){
+      this.setData({
+        startDates: selectDate,
+      })
       this.calendar.setTodoLabels({
         // 待办点标记设置
         pos: 'bottom', // 待办点标记位置 ['top', 'bottom']
@@ -56,6 +60,15 @@ Page({
           selectDate,
         ]
       });
+    }
+    if (selectDate.day != this.data.startDates.day || selectDate.month != this.data.startDates.month) {
+      this.setData({
+        startSwitch: false,
+      })
+    } else {
+      this.setData({
+        startSwitch: true,
+      })
     }
     console.log('afterTapDay', e.detail); // => { currentSelect: {}, allSelectedDays: [] }
 

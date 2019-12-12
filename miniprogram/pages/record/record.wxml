@@ -1,0 +1,30 @@
+<!--miniprogram/components/calendar/record/record.wxml-->
+<scroll-view scroll-y="true" class="srollview">
+  <view class="record_itemback">
+    <view class="record_item_textback">
+      <text class="record_item_text">时长</text>
+    </view>
+    <view class="record_item_imgback">
+      <view class="record_item_picker">
+      <picker mode="date" value="{{date}}" start="2015-09-01" bindchange="bindDateChange">
+        <view >
+          添加日期
+        </view>
+      </picker>
+      </view>
+      <image class="record_item_img"></image>
+    </view>
+  </view>
+
+  <block wx:for="{{listdata}}" wx:key="key">
+      <view class="listview_item" bindtap="itemClick" data-text="{{item.text}}">
+        <view class="listview_item_textback">
+          <text class="listview_item_text">{{item.text}}</text>
+        </view>
+        <view class="listview_item_imgback">
+          <image></image>
+        </view>
+      </view>
+    </block>
+  
+</scroll-view>

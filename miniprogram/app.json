@@ -2,9 +2,9 @@
   "pages": [
     "pages/mine/mine",
     "pages/main/main",
-    
     "pages/period/period",
-    "pages/menses/menses"
+    "pages/menses/menses",
+    "pages/record/record"
   ],
   "tabBar": {
     "list": [
@@ -26,7 +26,6 @@
     "navigationBarTextStyle": "black"
   },
   "sitemapLocation": "sitemap.json",
-
   "plugins": {
     "calendar": {
       "version": "1.1.3",

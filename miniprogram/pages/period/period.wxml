@@ -14,7 +14,7 @@
       <text class="menses_item_text">开始</text>
     </view>
     <view class="menses_item_switchback">
-      <switch class="menses_item_switch" color="#AAD4F5" bindchange="bindStartSwitch"></switch>
+      <switch class="menses_item_switch" color="#AAD4F5" checked="{{startSwitch}}" bindchange="bindStartSwitch"></switch>
     </view>
   </view>
   <view class="menses_itemback">
