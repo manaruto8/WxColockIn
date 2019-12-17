@@ -50,7 +50,7 @@ Page({
       },
       success: function (res) {
         console.log(res.result.openid) // 3
-        app.globalData.userId = res.result.openid
+        app.globalData.openId = res.result.openid
       },
       fail: console.error
     })

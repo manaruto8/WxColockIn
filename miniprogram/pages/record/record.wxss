@@ -5,19 +5,20 @@
     display: flex;
     background-color: white;
 }
-.record_item_textback{
+.record_item_dateback{
     padding-left: 20rpx;
-    width: 40%;
+    width: 50%;
     display: flex;
 }
 .record_item_text{
     margin-top: auto;
     margin-bottom: auto;
-    font-size: 11pt
+    font-size: 11pt;
+    color: #e64340
 }
-.record_item_imgback{
-    padding-left: 20rpx;
-    width: 60%;
+.record_item_spaceback{
+    padding-right: 20rpx;
+    width: 50%;
     display: flex;
 }
 .record_item_picker{
@@ -27,16 +28,13 @@
     font-size: 11pt;
     text-align: right;
 }
-.record_item_img{
-    width: 20%;
-}
 .listview_item{
     margin-top: 20rpx;
     height: 100rpx;
     display: flex;
     background-color: white;
 }
-.listview_item_textback{
+.listview_item_dateback{
     padding-left: 20rpx;
     width: 50%;
     display: flex;
@@ -46,6 +44,7 @@
   margin-bottom: auto;
   font-size: 11pt
 }
-.listview_item_imgback{
-    width: 50%;
+.listview_item_spaceback{
+   width: 50%;
+    display: flex;
 }
