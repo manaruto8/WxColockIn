@@ -24,6 +24,7 @@ Page({
 
   itemClick: function (options) {
     var text = options.currentTarget.dataset.text
+    this.subscribeMsg()
     if (text =="日历管理1"){
       wx.navigateTo({
         url: '../period/period',
@@ -35,6 +36,7 @@ Page({
       })
     }
     if (text == "日历记录") {
+
       wx.navigateTo({
         url: '../record/record',
       })
@@ -53,6 +55,18 @@ Page({
         app.globalData.openId = res.result.openid
       },
       fail: console.error
+    })
+  },
+
+  subscribeMsg() {
+    wx.requestSubscribeMessage({
+      tmplIds: ["IiYg4nGyG0SZoi5GcyKesbEhH8IPmjodDW8lSzLXxP0"],
+      success(res) {
+        console.log(res)
+      },
+      fail(err) {
+        console.log(err)
+      }
     })
   },
 

@@ -83,12 +83,27 @@ Page({
     for (var i = 0; i < this.data.listData.length;i++){
       spaceAll += this.data.listData[i].space
     }
-    var averageSpace = spaceAll / this.data.listData.length
+    var averageSpace = Math.round(spaceAll / this.data.listData.length)
     var predictDate = new Date(this.data.lastDate);
     predictDate.setDate(predictDate.getDate() + averageSpace);
     this.setData({
       predictStartTime: predictDate.getFullYear() + "-" + (predictDate.getMonth() + 1) + "-" + predictDate.getDate(),
       predictSpace: averageSpace,
+    })
+    this.sendMsg()
+  },
+
+  sendMsg() {
+    wx.cloud.callFunction({
+      // 云函数名称
+      name: 'msg',
+      // 传给云函数的参数
+      data: {
+      },
+      success: function (res) {
+        console.log(res)
+      },
+      fail: console.error
     })
   },
 
