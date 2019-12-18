@@ -9,18 +9,18 @@ exports.main = async (event, context) => {
   try {
     const result = await cloud.openapi.subscribeMessage.send({
       touser: wxContext.OPENID,
-      page: "pages/record/record",
+      page: 'index',
       data: {
         thing1: {
-          value: "广州至北京"
+          value: '提醒'
         },
         thing2: {
-          value: "广州至北京"
+          value: '2015年01月05日'
         },
       },
-      templateId: "IiYg4nGyG0SZoi5GcyKesbEhH8IPmjodDW8lSzLXxP0"
+      templateId: 'IiYg4nGyG0SZoi5GcyKesbEhH8IPmjodDW8lSzLXxP0'
     })
-    console.log("----"+result)
+    console.log(result)
     return result
   } catch (err) {
     console.log(err)

@@ -36,7 +36,6 @@ Page({
       })
     }
     if (text == "日历记录") {
-
       wx.navigateTo({
         url: '../record/record',
       })
@@ -51,7 +50,7 @@ Page({
       data: {
       },
       success: function (res) {
-        console.log(res.result.openid) // 3
+        console.log(res.result.openid)
         app.globalData.openId = res.result.openid
       },
       fail: console.error

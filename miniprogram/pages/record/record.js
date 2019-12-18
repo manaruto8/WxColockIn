@@ -99,9 +99,11 @@ Page({
       name: 'msg',
       // 传给云函数的参数
       data: {
+        a: 100000000,
+        b: 200000000,
       },
       success: function (res) {
-        console.log(res)
+        console.log(res.result)
       },
       fail: console.error
     })
@@ -133,7 +135,7 @@ Page({
             lastDate: res.data[0].records[0].startTime
           })
           that.predictData()
-        }
+        }        
       })
     
 
