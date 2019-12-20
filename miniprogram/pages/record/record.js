@@ -46,6 +46,8 @@ Page({
             space: 28,
           }],
           dates: [dateId],
+          startTime: "",
+          space: "",
         },
         success(res) {
           console.log("add:" + res)
@@ -90,6 +92,18 @@ Page({
       predictStartTime: predictDate.getFullYear() + "-" + (predictDate.getMonth() + 1) + "-" + predictDate.getDate(),
       predictSpace: averageSpace,
     })
+    db.collection('user').where({
+      _openid: app.globalData.openId,
+    })
+      .update({
+        data: {
+          startTime: this.data.predictStartTime,
+          space: this.data.predictSpace,
+        },
+        success: function (res) {
+          
+        }
+      })
     this.sendMsg()
   },
 
@@ -99,11 +113,9 @@ Page({
       name: 'msg',
       // 传给云函数的参数
       data: {
-        a: 100000000,
-        b: 200000000,
       },
       success: function (res) {
-        console.log(res.result)
+        console.log(res)
       },
       fail: console.error
     })
@@ -127,7 +139,6 @@ Page({
     })
       .get({
         success: function (res) {
-          console.log(res.data)
           that.setData({
             hasData: res.data.length <= 0 ? false: true,
             listData: res.data[0].records,
