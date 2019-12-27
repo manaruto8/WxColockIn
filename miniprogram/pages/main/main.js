@@ -7,7 +7,7 @@ Page({
   data: {
   },
 
-  getBing: function () {
+  getBing () {
     var that=this
     var url = "cloud://mawebservice.6d61-mawebservice-1259728751/image/1.jpg"
     wx.request({

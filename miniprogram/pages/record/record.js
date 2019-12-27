@@ -43,7 +43,7 @@ Page({
         data: {
           records: [{
             startTime: date,
-            space: 28,
+            space: 2,
           }],
           dates: [dateId],
           startTime: "",
@@ -148,8 +148,6 @@ Page({
           that.predictData()
         }        
       })
-    
-
   },
 
   /**
