@@ -20,9 +20,11 @@ Page({
 
   },
 
+ /**
+   * 选择日期
+   */
   bindDateChange(e) {
     var that = this
-    console.log('picker发送选择改变，携带值为', e.detail.value)
     var date = e.detail.value
     var dateId = date.replace(/\-/g, "")
     if(dateId<this.data.lastDateId){
@@ -36,6 +38,9 @@ Page({
     this.addOrUpdateData(date, dateId)
   },
 
+ /**
+   * 数据库添加或者更新日期数据
+   */
   addOrUpdateData(date, dateId) {
     var that = this
     if (!this.data.hasData) {
@@ -50,13 +55,11 @@ Page({
           space: "",
         },
         success(res) {
-          console.log("add:" + res)
           that.getData()
         }
       })
     } else {
       var space = this.getSpaceData(date, this.data.lastDate)
-      console.log("update:" + space)
       db.collection('user').where({
         _openid: app.globalData.openId,
       })
@@ -69,7 +72,6 @@ Page({
             dates: cmd.unshift(dateId)
           },
           success: function (res) {
-            console.log("update:" + res)
             that.getData()
           }
         })
@@ -77,6 +79,9 @@ Page({
     
   },
 
+ /**
+   * 预测日期及平均间隔
+   */
   predictData() {
     var spaceAll=0
     if (this.data.listData.length <= 0) {
@@ -88,8 +93,10 @@ Page({
     var averageSpace = Math.round(spaceAll / this.data.listData.length)
     var predictDate = new Date(this.data.lastDate);
     predictDate.setDate(predictDate.getDate() + averageSpace);
+    var month = this.addZero((predictDate.getMonth() + 1))
+    var day = this.addZero(predictDate.getDate())
     this.setData({
-      predictStartTime: predictDate.getFullYear() + "-" + (predictDate.getMonth() + 1) + "-" + predictDate.getDate(),
+      predictStartTime: predictDate.getFullYear() + "-" +month  + "-" + day,
       predictSpace: averageSpace,
     })
     db.collection('user').where({
@@ -104,9 +111,50 @@ Page({
           
         }
       })
-    this.sendMsg()
+    this.addOrUpdateTask() 
   },
 
+/**
+   * 数据库添加或者更新任务数据
+   */
+  addOrUpdateTask() {
+    console.log(this.data.hasTask)
+    if (!this.data.hasTask) {
+      db.collection('task')
+        .add({
+          data: {
+            startTime: this.data.predictStartTime,
+          },
+          success: function (res) {
+            this.sendMsg()
+          }
+        })
+    }else{
+      db.collection('task').where({
+        _openid: app.globalData.openId,
+      })
+        .update({
+          data: {
+            startTime: this.data.predictStartTime,
+          },
+          success: function (res) {
+            this.sendMsg()
+          }
+        })
+    }
+  },
+
+  /**
+   * 预测日期不够10补0
+   */
+  addZero(s) {
+    return s < 10 ? '0' + s : s
+  },
+
+
+  /**
+   * 发送短信
+   */
   sendMsg() {
     wx.cloud.callFunction({
       // 云函数名称
@@ -121,6 +169,9 @@ Page({
     })
   },
 
+/**
+   * 计算日期间隔
+   */
   getSpaceData(sDate1, sDate2) {
     var aDate, oDate1, oDate2, iDays
     aDate = sDate1.split("-")
@@ -131,6 +182,9 @@ Page({
     return iDays
   },
 
+ /**
+   * 数据库获取初始化数据
+   */
   getData(){
     var that = this
     console.log(app.globalData.openId)
@@ -145,8 +199,20 @@ Page({
             lastDateId: res.data[0].dates[0],
             lastDate: res.data[0].records[0].startTime
           })
-          that.predictData()
         }        
+      })
+
+    db.collection('task').where({
+      _openid: app.globalData.openId,
+    })
+      .get({
+        success: function (res) {
+          console.log(res)
+          that.setData({
+            hasTask: res.data.length <= 0 ? false : true,
+          })
+          that.predictData()
+        }
       })
   },
 

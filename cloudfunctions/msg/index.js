@@ -10,37 +10,47 @@ cloud.init({
 exports.main = async (event, context) => {
   const wxContext = cloud.getWXContext()
   const db = cloud.database()
-  return db.collection('user').where({
-    _openid: wxContext.OPENID,
-  }).get().then(res => {
+  
+  return db.collection('task').get().then(res => {
     // res.data 包含该记录的数据
-    var startTime=res.data[0].startTime
-    console.log(new Date(startTime).getTime() - (24 * 3600 * 1000))
-    console.log(Date.now())
-    if(new Date(startTime).getTime()-(24*3600*1000)<=Date.now()){
-      try {
-        return new Promise(resolve => {
-          const result =cloud.openapi.subscribeMessage.send({
-            touser: wxContext.OPENID,
-            page: 'pages/record/record',
-            data: {
-              thing1: {
-                value: '日程提示'
+    for (var i = 0; i < res.data.length; i++) {
+      var id = res.data[i]._id
+      var openId = res.data[i]._openid
+      var startTime = res.data[i].startTime
+      console.log(id)
+      console.log("提醒时间：---" + new Date(startTime).getTime())
+      console.log("当前时间：" + Date.now())
+      if (new Date(startTime).getTime() - (24 * 3600 * 1000) <= Date.now()) {
+        try {
+          return new Promise(resolve => {
+            console.log("发送消息")
+            console.log(id)
+            const result = cloud.openapi.subscribeMessage.send({
+              touser: openId,
+              page: 'pages/record/record',
+              data: {
+                thing1: {
+                  value: '日程提示'
+                },
+                thing2: {
+                  value: startTime
+                },
               },
-              thing2: {
-                value: startTime
-              },
-            },
-            templateId: 'IiYg4nGyG0SZoi5GcyKesbEhH8IPmjodDW8lSzLXxP0'
+              templateId: 'IiYg4nGyG0SZoi5GcyKesbEhH8IPmjodDW8lSzLXxP0'
+            })
+            resolve(id)
+          }).then(res => {
+            db.collection('task').doc(res).remove({
+              success: function (res) {
+                console.log(res.data)
+              }
+            })
+
           })
-          resolve(result)
-        }).then(res => {
-          console.log(res)
-          return res
-        })
-      } catch (err) {
-      
-        return err
+        } catch (err) {
+
+          return err
+        }
       }
     }
   })
