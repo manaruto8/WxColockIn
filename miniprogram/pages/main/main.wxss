@@ -33,6 +33,22 @@
   font-size: 11pt;
   border-bottom:1rpx solid white;
 }
+.select_back{
+  margin-top: 30rpx;
+  margin-bottom: 30rpx;
+  padding-left: 10rpx;
+  padding-right: 10rpx;
+  height: 90rpx;
+  background-color: white;
+  display: flex;
+}
+.select_text{
+  margin-top: auto;
+  margin-bottom: auto;
+  font-size: 11pt;
+  margin-left:1%;
+  width: 48%;
+}
 .gridview{
     margin: 10rpx;
     height: auto;  

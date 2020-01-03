@@ -5,31 +5,36 @@ Page({
    * 页面的初始数据
    */
   data: {
+    backUrl: "cloud://testwebservice.7465-testwebservice-1259728751/images/1.jpg"
   },
-
+/**
+   * 获取必应图片
+   */
   getBing () {
     var that=this
-    var url = "cloud://mawebservice.6d61-mawebservice-1259728751/image/1.jpg"
     wx.request({
       url: "http://guolin.tech/api/bing_pic",
       success(res){
-        url=res.data
         that.setData({
-          backUrl: "cloud://mawebservice.6d61-mawebservice-1259728751/image/1.jpg"
+          //backUrl: res.data
         }) 
-        that.getTempImg()
+        that.getTempImg(that.data.backUrl)
       }
     })
   },
 
-  getImg:function(){
+/**
+   * 获取图片列表
+   */
+  getImg(){
     var that = this
-    var arr=[1,2,3,4,5]
-    var urlArr = ["cloud://mawebservice.6d61-mawebservice-1259728751/image/1.jpg",
-                  "cloud://mawebservice.6d61-mawebservice-1259728751/image/2.jpg",
-                  "cloud://mawebservice.6d61-mawebservice-1259728751/image/3.jpg",
-                  "cloud://mawebservice.6d61-mawebservice-1259728751/image/4.jpg",
-                  "cloud://mawebservice.6d61-mawebservice-1259728751/image/5.jpg"]
+    var arr=[1,2,3,4,5,6]
+    var urlArr = ["cloud://testwebservice.7465-testwebservice-1259728751/images/1.jpg",
+                  "cloud://testwebservice.7465-testwebservice-1259728751/image/2.jpg",
+                  "cloud://testwebservice.7465-testwebservice-1259728751/image/3.jpg",
+                  "cloud://testwebservice.7465-testwebservice-1259728751/image/4.jpg",
+                  "cloud://testwebservice.7465-testwebservice-1259728751/image/5.jpg",
+                  "cloud://testwebservice.7465-testwebservice-1259728751/image/6.jpg"]
     for(var i=0;i<arr.length;i++){
       var num = Math.round(Math.random() * 16) + 1
       if (arr.indexOf(num)!=-1|| num < 1 || num > 17){
@@ -45,23 +50,11 @@ Page({
     }) 
   },
 
-  getTempImg: function () {
-    var that = this
-    wx.cloud.getTempFileURL({
-      fileList: [that.data.backUrl],
-      success: res => {
-        that.setData({
-          tempUrl: res.fileList[0].tempFileURL
-        })
-        that.getCanvas()
-      },
-      fail: err => {
-        // handle error
-      }
-    })
-  },
 
-  getLocation: function () {
+/**
+   * 获取经纬度
+   */
+  getLocation () {
     wx.getLocation({
       type: 'wgs84',
       success: function (res) {
@@ -81,25 +74,61 @@ Page({
   itemClick:function(options){
     var url = options.currentTarget.dataset.url
     this.setData({
-      backUrl: url
-    })
-    this.getTempImg()
+       backUrl: url
+    }) 
+    this.getTempImg(url)
   },  
 
-  getCanvas: function () {
+
+  selectClick: function (options) {
+    var that=this
+    wx.chooseImage({
+      count: 1,
+      sizeType: ['original', 'compressed'],
+      sourceType: ['album', 'camera'],
+      success(res) {
+        const tempFilePaths = res.tempFilePaths[0]
+        that.setData({
+          backUrl: tempFilePaths
+        })
+        that.getCanvas(tempFilePaths)
+      }
+    })
+  },
+
+  /**
+  * 获取图片真实链接并保存
+  */
+  getTempImg(url) {
+    var that = this
+    wx.cloud.downloadFile({
+      fileID: url,
+      success: res => {
+        console.log("save---")
+        console.log(res)
+        that.getCanvas(res.tempFilePath)
+      },
+      fail: err => {
+        console.log("save err---")
+      }
+    })
+  },
+  
+/**
+   * 生成分享图片
+   */
+  getCanvas(img) {
     var canvasId ="myCanvas"
     var ctx = wx.createCanvasContext(canvasId)
     var text = this.data.textInput
     var lacation=this.data.locationInput
     var that = this
     wx.getImageInfo({
-      src: that.data.tempUrl,
+      src: img,
       success: function (res) {
         var width = res.width
         var height = res.height
-        //获取屏幕宽度
         let screenWidth = wx.getSystemInfoSync().windowWidth
-        //处理一下图片的宽高的比例
         if (width >= height) {
           if (width > screenWidth) {
             width = screenWidth
@@ -120,27 +149,23 @@ Page({
           imageWidth: width,
           imageHeight: height,
         })
-        ctx.drawImage(that.data.tempUrl, 0, 0, width, height)
+        ctx.drawImage(img, 0, 0, width, height)
         ctx.setFontSize(20)
         ctx.setFillStyle("white")
-        ctx.fillText("I Love You", 150, 150)
+        ctx.fillText("hhhh", 150, 150)
         ctx.draw(false,function(){
           wx.canvasToTempFilePath({
             canvasId: canvasId,
-            success: (res) => {    
-              wx.saveFile({
-                tempFilePath: res.tempFilePath,
-                success: (res) => {
-                  that.setData({
-                    tempPath: res.savedFilePath
-                  }) 
-                },
-                fail: (e) => {              
-                }
-              })
-            
+            success: (res) => {
+              console.log("temp---") 
+              console.log(res) 
+              that.setData({
+                tempPath: res.tempFilePath
+              })   
             },
             fail: (e) => {
+              console.log("temp err---")
+              console.log(e)
             }
           })
         })
@@ -206,7 +231,17 @@ Page({
    */
   onShareAppMessage: function () {
     var that = this
-    console.log("---" + that.data.tempPath)
+    wx.saveImageToPhotosAlbum({
+      filePath: that.data.tempPath,
+      success: (file) => {
+        console.log("file---")
+        console.log(file)
+      },
+      fail: (e) => {
+        console.log("file err---")
+        console.log(e)
+      }
+    }) 
     return {
       title:"打卡",
       imageUrl: that.data.tempPath

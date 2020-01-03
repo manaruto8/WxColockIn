@@ -9,6 +9,9 @@
       <input class="clockin_location" placeholder="请输入你的位置"  placeholder-style="color:#b2b2b2" bindinput="locationInput"></input>
     </view>
   </view>
+  <view class="select_back" bindtap="selectClick">
+    <text class="select_text">从相册选择背景</text>
+  </view>
   <view class="gridview">
     <block wx:for="{{griddata}}" wx:key="key">
       <view class='gridview_item' bindtap="itemClick" data-url="{{item}}">
@@ -19,5 +22,5 @@
   <view class="clockin_floatback">
     <button class="clockin_floatbtn" open-type="share" data-shareInfo="{{shareModel}}">点击分享</button>
   </view>
-  <canvas class='canvas' style="width: {{imageWidth}}px; height: {{imageHeight}}px; left:10000rpx; display: flexd;" canvas-id="myCanvas"></canvas>
+  <canvas class='canvas' style="width: {{imageWidth}}px; height: {{imageHeight}}px; left:100000rpx; display: flexd;" canvas-id="myCanvas"></canvas>
 </view>
