@@ -17,14 +17,14 @@ exports.main = async (event, context) => {
       var id = res.data[i]._id
       var openId = res.data[i]._openid
       var startTime = res.data[i].startTime
+      var warnTime = new Date(startTime).getTime() - (22 * 3600 * 1000)
       console.log(id)
-      console.log("提醒时间：---" + new Date(startTime).getTime())
-      console.log("当前时间：" + Date.now())
-      if (new Date(startTime).getTime() - (24 * 3600 * 1000) <= Date.now()) {
+      console.log("提醒时间：---" + warnTime)
+      console.log("当前时间：---" + Date.now())
+      if (Date.now()>=warnTime ) {
         try {
           return new Promise(resolve => {
             console.log("发送消息")
-            console.log(id)
             const result = cloud.openapi.subscribeMessage.send({
               touser: openId,
               page: 'pages/record/record',
@@ -38,17 +38,18 @@ exports.main = async (event, context) => {
               },
               templateId: 'IiYg4nGyG0SZoi5GcyKesbEhH8IPmjodDW8lSzLXxP0'
             })
-            resolve(id)
+            resolve(result)
           }).then(res => {
-            db.collection('task').doc(res).remove({
+            db.collection('task').doc(id).remove({
               success: function (res) {
-                console.log(res.data)
+                console.log("删除成功")
               }
             })
-
+            console.log(res)
+            return res
           })
         } catch (err) {
-
+          console.log(err)
           return err
         }
       }

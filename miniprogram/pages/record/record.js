@@ -90,6 +90,7 @@ Page({
     for (var i = 0; i < this.data.listData.length;i++){
       spaceAll += this.data.listData[i].space
     }
+    console.log(spaceAll + "---" + this.data.lastDate)
     var averageSpace = Math.round(spaceAll / this.data.listData.length)
     var predictDate = new Date(this.data.lastDate);
     predictDate.setDate(predictDate.getDate() + averageSpace);
@@ -118,7 +119,7 @@ Page({
    * 数据库添加或者更新任务数据
    */
   addOrUpdateTask() {
-    console.log(this.data.hasTask)
+    var that=this
     if (!this.data.hasTask) {
       db.collection('task')
         .add({
@@ -126,7 +127,7 @@ Page({
             startTime: this.data.predictStartTime,
           },
           success: function (res) {
-            this.sendMsg()
+            //that.sendMsg()
           }
         })
     }else{
@@ -138,7 +139,7 @@ Page({
             startTime: this.data.predictStartTime,
           },
           success: function (res) {
-            this.sendMsg()
+            //that.sendMsg()
           }
         })
     }
@@ -193,27 +194,29 @@ Page({
     })
       .get({
         success: function (res) {
+          console.log("start------")
+          console.log(res)
           that.setData({
             hasData: res.data.length <= 0 ? false: true,
             listData: res.data[0].records,
             lastDateId: res.data[0].dates[0],
             lastDate: res.data[0].records[0].startTime
           })
+          db.collection('task').where({
+            _openid: app.globalData.openId,
+          })
+            .get({
+              success: function (res) {
+                console.log(res)
+                that.setData({
+                  hasTask: res.data.length <= 0 ? false : true,
+                })
+                that.predictData()
+              }
+            })
         }        
       })
-
-    db.collection('task').where({
-      _openid: app.globalData.openId,
-    })
-      .get({
-        success: function (res) {
-          console.log(res)
-          that.setData({
-            hasTask: res.data.length <= 0 ? false : true,
-          })
-          that.predictData()
-        }
-      })
+    
   },
 
   /**
