@@ -129,26 +129,11 @@ Page({
         var width = res.width
         var height = res.height
         let screenWidth = wx.getSystemInfoSync().windowWidth
-        if (width >= height) {
-          if (width > screenWidth) {
-            width = screenWidth
-          }
-          height = height / res.width * width
-        } else {
-          if (width > screenWidth) {
-            width = screenWidth
-          }
-          if (height > 400) {
-            height = 400
-            width = res.width / res.height * height
-          } else {
-            height = height / res.width * width
-          }
+        if (width > screenWidth) {
+          width = screenWidth
         }
-        that.setData({
-          imageWidth: width,
-          imageHeight: height,
-        })
+        height = height / res.width * width
+        console.log(width+"---"+height)
         ctx.drawImage(img, 0, 0, width, height)
         ctx.setFontSize(20)
         ctx.setFillStyle("white")
