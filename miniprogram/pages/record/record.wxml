@@ -2,22 +2,26 @@
 <scroll-view scroll-y="true" class="srollview">
   <view class="record_itemback">
     <view class="record_item_dateback">
-      <text class="record_item_text">{{predictStartTime}}</text>
+      <text class="record_item_text">预测时间：{{predictStartTime}}</text>
     </view>
+  </view>
+  <view class="record_itemback">
     <view class="record_item_spaceback">
-      <text class="record_item_text">{{predictSpace}}</text>
-      <view class="record_item_picker">
+      <text class="record_item_text">平均周期：{{predictSpace}}</text>
+    </view>
+  </view>
+  <view class="record_itemback">
+    <view class="record_item_picker">
       <picker mode="date" value="{{date}}" start="2015-09-01" bindchange="bindDateChange">
         <view >
           添加日期
         </view>
       </picker>
       </view>
-    </view>
   </view>
 
   <block wx:for="{{listData}}" wx:key="key">
-      <view class="listview_item" bindtap="itemClick" data-text="{{item.text}}">
+      <view class="listview_item" bindlongpress="itemLongClick" data-text="{{item}}">
         <view class="listview_item_dateback">
           <text class="listview_item_text">{{item.startTime}}</text>
         </view>
@@ -25,6 +29,8 @@
           <text class="listview_item_text">{{item.space}}</text>
         </view>
       </view>
-    </block>
+  </block>
+  <mp-actionSheet show="{{showActionsheet}}" actions="{{sheetGroups}}" bindactiontap="sheetClick" data-text="{{sheetText}}" title="确认删除">
+  </mp-actionSheet>
   
 </scroll-view>

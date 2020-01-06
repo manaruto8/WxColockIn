@@ -22,5 +22,5 @@
   <view class="clockin_floatback">
     <button class="clockin_floatbtn" open-type="share" data-shareInfo="{{shareModel}}">点击分享</button>
   </view>
-  <canvas class='canvas' style="width: {{imageWidth}}px; height: {{imageHeight}}px; left:100000rpx; display: flexd;" canvas-id="myCanvas"></canvas>
+  <canvas class='canvas' style="width: {{imageWidth}}px; height: {{imageHeight}}px; left:10000000px; top:-10000000px; " canvas-id="myCanvas"></canvas>
 </view>

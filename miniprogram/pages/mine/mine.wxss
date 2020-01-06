@@ -22,3 +22,7 @@
 .listview_item_imgback{
     width: 50%;
 }
+.slideview{
+  height: 100rpx;
+  width: 100%;
+}

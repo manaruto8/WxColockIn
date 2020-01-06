@@ -5,7 +5,9 @@ Page({
    * 页面的初始数据
    */
   data: {
-    backUrl: "cloud://testwebservice.7465-testwebservice-1259728751/images/1.jpg"
+    backUrl: "cloud://testwebservice.7465-testwebservice-1259728751/images/1.jpg",
+    textInput:"",
+    locationInput:''
   },
 /**
    * 获取必应图片
@@ -21,6 +23,7 @@ Page({
         that.getTempImg(that.data.backUrl)
       }
     })
+    that.getTempImg(that.data.backUrl)
   },
 
 /**
@@ -121,7 +124,7 @@ Page({
     var canvasId ="myCanvas"
     var ctx = wx.createCanvasContext(canvasId)
     var text = this.data.textInput
-    var lacation=this.data.locationInput
+    var location=this.data.locationInput
     var that = this
     wx.getImageInfo({
       src: img,
@@ -129,15 +132,22 @@ Page({
         var width = res.width
         var height = res.height
         let screenWidth = wx.getSystemInfoSync().windowWidth
-        if (width > screenWidth) {
-          width = screenWidth
+        if (width > 1920) {
+          width = 1920
         }
         height = height / res.width * width
-        console.log(width+"---"+height)
-        ctx.drawImage(img, 0, 0, width, height)
-        ctx.setFontSize(20)
+        that.setData({
+          imageWidth: width,
+          imageHeight: height
+        })
+        console.log(res.width + "---" + res.height + "---" +width+"---"+height)
+        ctx.drawImage(img,0,0,res.width,res.height, 0, 0, width, height)
+        ctx.setFontSize(height/20)
         ctx.setFillStyle("white")
-        ctx.fillText("hhhh", 150, 150)
+        ctx.fillText(location + "", width / 40, height -2*height / 80)
+        ctx.setFontSize(height/15)
+        ctx.setFillStyle("white")
+        ctx.fillText(text + "", width / 40, height  - 8*height / 80)
         ctx.draw(false,function(){
           wx.canvasToTempFilePath({
             canvasId: canvasId,
@@ -216,6 +226,7 @@ Page({
    */
   onShareAppMessage: function () {
     var that = this
+    console.log(that.data.tempPath)
     wx.saveImageToPhotosAlbum({
       filePath: that.data.tempPath,
       success: (file) => {
@@ -234,6 +245,7 @@ Page({
   },
 
   textInput: function(e) {
+
     this.setData({
       textInput: e.detail.value
     })

@@ -12,13 +12,60 @@ Page({
     listData: [{
       startTime: "",
       space: "",
-    } ],
-    lastDateId:0,
+    }],
+    listDateId: [
+      0,
+    ],
     lastDate:0,
     predictStartTime: "",
     predictSpace: "",
 
+    showActionsheet: false,
+    sheetGroups: [
+      { text: '删除', type: 'warn', value: 1 }
+    ]
   },
+
+  itemLongClick: function (options) {
+    var startTime = options.currentTarget.dataset.text.startTime
+    this.setData({
+      showActionsheet: true,
+      sheetText:startTime
+    })
+  },  
+
+  sheetClick: function (options) {
+    var that=this
+    var startTime = options.currentTarget.dataset.text    
+    this.setData({
+      showActionsheet: false
+    })
+    var listData = this.data.listData
+    var listDateId = this.data.listDateId
+    for (var i = 0; i < listData.length; i++) {
+      if (listData[i].startTime==startTime){
+        listData.splice(i,1)
+        listDateId.splice(i, 1)
+      }
+    }
+    db.collection('user').where({
+      _openid: app.globalData.openId,
+    })
+      .update({
+        data: {
+          records: listData,
+          dates: listDateId
+        },
+        success: function (res) {
+          wx.showToast({
+            title: '删除成功',
+            icon: 'none',
+            duration: 2000
+          })
+          that.getData()
+        }
+      })
+  },  
 
  /**
    * 选择日期
@@ -27,7 +74,7 @@ Page({
     var that = this
     var date = e.detail.value
     var dateId = date.replace(/\-/g, "")
-    if(dateId<this.data.lastDateId){
+    if (dateId <= this.data.listDateId[0]){
       wx.showToast({
         title: '添加日期需大于最后的日期',
         icon: 'none',
@@ -48,7 +95,7 @@ Page({
         data: {
           records: [{
             startTime: date,
-            space: 2,
+            space: 28,
           }],
           dates: [dateId],
           startTime: "",
@@ -199,7 +246,7 @@ Page({
           that.setData({
             hasData: res.data.length <= 0 ? false: true,
             listData: res.data[0].records,
-            lastDateId: res.data[0].dates[0],
+            listDateId: res.data[0].dates,
             lastDate: res.data[0].records[0].startTime
           })
           db.collection('task').where({

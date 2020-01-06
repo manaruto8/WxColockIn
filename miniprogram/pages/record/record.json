@@ -1,4 +1,6 @@
 {
-  "usingComponents": {},
+  "usingComponents": {
+    "mp-actionSheet": "/components/actionsheet/actionsheet"
+  },
   "enablePullDownRefresh":true
 }

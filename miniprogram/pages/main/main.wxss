@@ -1,7 +1,7 @@
 /* miniprogram/pages/mian.wxss */
 .clockin_back{
   width: 100%;
-  height: auto;  
+  height: 500rpx;
 }
 .clockin_imgback{
   width: 100%;
@@ -15,7 +15,7 @@
    position: absolute;
    left: 20rpx;
    right: 20rpx;
-   bottom: 80rpx;
+   bottom: 100rpx;
 }
 .clockin_input{
    color: white;
@@ -26,7 +26,7 @@
    width: 50%;
    position: absolute;
    left: 20rpx;
-   bottom: 20rpx;
+   bottom: 30rpx;
 }
 .clockin_location{
   color: white;
@@ -34,8 +34,7 @@
   border-bottom:1rpx solid white;
 }
 .select_back{
-  margin-top: 30rpx;
-  margin-bottom: 30rpx;
+  margin-bottom: 10rpx;
   padding-left: 10rpx;
   padding-right: 10rpx;
   height: 90rpx;

@@ -18,7 +18,7 @@ exports.main = async (event, context) => {
       var openId = res.data[i]._openid
       var startTime = res.data[i].startTime
       var warnTime = new Date(startTime).getTime() - (22 * 3600 * 1000)
-      console.log(id)
+      console.log("当前id：---" +id)
       console.log("提醒时间：---" + warnTime)
       console.log("当前时间：---" + Date.now())
       if (Date.now()>=warnTime ) {
@@ -40,6 +40,7 @@ exports.main = async (event, context) => {
             })
             resolve(result)
           }).then(res => {
+            console.log("删除id：---"+id)
             db.collection('task').doc(id).remove({
               success: function (res) {
                 console.log("删除成功")
