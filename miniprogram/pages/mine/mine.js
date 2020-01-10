@@ -16,6 +16,8 @@ Page({
       },
       {
         text: "日历记录"
+      },{
+        text: "日历记录"
       }
     ]
 
@@ -42,7 +44,7 @@ Page({
     }
   },  
 
-  getOpenId(e){
+  getCloud(e){
     wx.cloud.callFunction({
       // 云函数名称
       name: 'login',
@@ -52,6 +54,7 @@ Page({
       success: function (res) {
         console.log(res.result.openid)
         app.globalData.openId = res.result.openid
+        app.globalData.savePicture = res.result.savePicture
       },
       fail: console.error
     })
@@ -80,7 +83,7 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-    this.getOpenId()
+    this.getCloud()
   },
 
   /**

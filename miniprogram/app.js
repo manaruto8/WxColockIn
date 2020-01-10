@@ -17,6 +17,7 @@ App({
 
     this.globalData = {
       openId:null,
+      savePicture:false,
     }
   }
 })
