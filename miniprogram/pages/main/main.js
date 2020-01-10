@@ -113,6 +113,7 @@ Page({
       },
       fail: err => {
         console.log("save err---")
+        console.log(err)
       }
     })
   },

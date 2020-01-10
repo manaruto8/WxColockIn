@@ -8,7 +8,7 @@
     {
       "name": "task",
       "type": "timer",
-      "config": "0 0 10 * * * *"
+      "config": "0 20 14 * * * *"
     }
   ]
 }
